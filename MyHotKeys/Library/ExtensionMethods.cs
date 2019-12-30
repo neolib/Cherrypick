@@ -7,7 +7,8 @@ namespace MyHotKeys.Library
         public static string ToHexString(this byte[] self,
             int startIndex = 0, int length = 0)
         {
-            if (self?.Length == 0) return null;
+            if (self == null) return null;
+            if (self.Length == 0) return string.Empty;
 
             if (length == 0) length = self.Length;
             var sb = new StringBuilder();
@@ -18,10 +19,11 @@ namespace MyHotKeys.Library
             return sb.ToString();
         }
 
-        public static string ToCStyleHexString(this byte[] self, 
+        public static string ToCStyleHexString(this byte[] self,
             int startIndex = 0, int length = 0, int nthBreak = 0)
         {
-            if (self?.Length == 0) return null;
+            if (self == null) return null;
+            if (self.Length == 0) return string.Empty;
 
             if (length == 0) length = self.Length;
             var sb = new StringBuilder();
@@ -45,9 +47,11 @@ namespace MyHotKeys.Library
             return sb.ToString();
         }
 
-        public static bool IsSameTextAs(this string self, string other)
+        public static bool IsSameTextAs(this string self, string text)
         {
-            return string.Compare(self, other) == 0;
+            if (self == null) return false;
+            if (text == null) return false;
+            return string.Compare(self, text, true) == 0;
         }
     }
 }

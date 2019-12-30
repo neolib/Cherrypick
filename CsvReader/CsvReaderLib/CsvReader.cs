@@ -46,7 +46,7 @@ namespace neolib.Files
         public CsvRecordList ReadText(string text)
         {
             var records = new CsvRecordList();
-            this.OnRecordReady += (CsvRecord record) => { records.Add(record); };
+            this.OnRecordReady += (record) => records.Add(record);
             this.ParseText(text);
             return records;
         }
@@ -54,7 +54,7 @@ namespace neolib.Files
         public CsvRecordList ReadFile(string filename, Encoding encoding = null)
         {
             var records = new CsvRecordList();
-            this.OnRecordReady += (CsvRecord record) => { records.Add(record); };
+            this.OnRecordReady += (record) => records.Add(record);
             this.ParseFile(filename, encoding);
             return records;
         }
