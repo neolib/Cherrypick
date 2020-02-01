@@ -5,11 +5,8 @@
  *
  * */
 using neolib.Files;
-using System;
-using System.Text;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Text;
 
 namespace CsvReaderLib
 {
@@ -23,11 +20,13 @@ namespace CsvReaderLib
         /// <returns>Escaped string.</returns>
         /// <remarks>
         /// Meaning of <paramref name="quote"/>:
-        /// true:  always quote result value
-        /// false: do not quote result value
-        /// null:  smart quote result value
-        ///        add quotes if <paramref name="s"/> contains double-quote char,
-        ///        do not quote if not.
+        /// true
+        ///     Always quote result value.
+        /// false
+        ///     Do not quote result value.
+        /// null
+        ///     Smart quote result value, only add quotes if <paramref name="s"/>
+        ///     contains double-quote char.
         /// </remarks>
         public static string CsvEscape(string s, bool? quote = null)
         {
@@ -35,9 +34,8 @@ namespace CsvReaderLib
 
             var csv = s.Replace("\"", "\"\"");
 
-            if (quote == true) return $"\"{csv}\"";
-            if (quote == false) return csv;
-            return csv == s ? csv : $"\"{csv}\"";
+            if (quote == true || (quote == null && s.IndexOf('"') >= 0)) return $"\"{csv}\"";
+            return csv;
         }
 
         public TextWriter Output { get; set; }
