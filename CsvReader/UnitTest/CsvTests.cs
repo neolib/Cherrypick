@@ -59,5 +59,13 @@ namespace UnitTest
             var printer = new CsvPrinter(Out);
             printer.Print(csvReader.ReadFile(@"Files\bad.csv"));
         }
+
+        [TestMethod]
+        public void Test1000()
+        {
+            var csvReader = new CsvReader();
+            var printer = new CsvPrinter(Out);
+            printer.Print(csvReader.ReadFile(@"Files\1000.csv"));
+        }
     }
 }

@@ -263,13 +263,14 @@ namespace neolib.Files
     /// A container class for list of values.
     /// </summary>
     /// <remarks>
-    /// The reason to create a separate class instead of a simple list for field vlaues is that the
+    /// The reason to create a separate class instead of a simple list for field values is that the
     /// List indexer would throw exception on accessing a value out of bound. This class has a
     /// custom indexer that simply returns null in this situation and at the same time caller can
     /// check the <see cref="FieldCount"/> property to get actual number of fields in this record.
-    /// The benefit is that caller won't worry about indexing exceptions; and this is very
+    /// 
+    /// The benefit is that developer won't worry about index out of bound exception; and, it is very
     /// convenient for reading malformed CSV content because all records may not have exactly the
-    /// same number of fields.
+    /// same number of fields (as indicated by the first row).
     /// </remarks>
     public class CsvRecord : IEnumerable<string>
     {
